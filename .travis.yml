@@ -59,7 +59,7 @@ jobs:
         sauce_connect: true
 
     - stage: lint
-      script: npm start lint
+      script: npm start lint.ci
 
     # smoke tests use default npm.
     - &smoke

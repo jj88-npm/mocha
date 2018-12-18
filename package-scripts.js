@@ -29,16 +29,20 @@ module.exports = {
     lint: {
       default: {
         script: 'nps lint.code lint.markdown',
-        description: 'Lint code and Markdown documentation'
+        description: 'Lint/fix/reformat code and lint Markdown'
       },
       code: {
-        script: 'eslint . "bin/*"',
-        description: 'Run ESLint linter'
+        script: 'eslint --fix . "bin/*"',
+        description: 'Run ESLint linter in "fix" mode'
       },
       markdown: {
         script:
           'markdownlint "*.md" "docs/**/*.md" ".github/*.md" "lib/**/*.md" "test/**/*.md" "example/**/*.md"',
         description: 'Run markdownlint linter'
+      },
+      ci: {
+        script: 'eslint . "bin/*" && nps lint.markdown',
+        description: 'Run ESLint and markdownlint linter'
       }
     },
     format: {
