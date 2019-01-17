@@ -802,16 +802,20 @@ describe('options', function() {
 
   describe('--compilers', function() {
     it('should fail', function(done) {
-      invokeMocha(['--compilers', 'coffee:coffee-script/register'], function(
-        error,
-        result
-      ) {
-        if (error) {
-          return done(error);
-        }
-        expect(result.code, 'to be', 1);
-        done();
-      });
+      invokeMocha(
+        ['--compilers', 'coffee:coffee-script/register'],
+        function(error, result) {
+          if (error) {
+            return done(error);
+          }
+          expect(result, 'to satisfy', {
+            code: 1,
+            output: /compilers is deprecated/i
+          });
+          done();
+        },
+        {stdio: 'pipe'}
+      );
     });
   });
 
